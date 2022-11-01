@@ -1,8 +1,8 @@
 import csv
 import re
 
-file_name = 'phonebook_raw.csv'
-file_name2 = 'simple.csv'
+file_name_dirty = 'phonebook_raw.csv'
+file_name_pretty = 'phonebook_simple.csv'
 
 
 def read_csv_file(filename, dialect='excel'):
@@ -10,7 +10,7 @@ def read_csv_file(filename, dialect='excel'):
         return list(csv.reader(file, dialect))
 
 
-file_data = read_csv_file(file_name)
+file_data = read_csv_file(file_name_dirty)
 
 # поиск номера телефона
 pattern = r"(\+7|8)\s?(\()?(\d{3})(\))?\-?\s?(\d{3})(\-)?(\d{2})(\-)?(\d{2})(\W|)?((\(|)(доб......)(\)|)|)"
@@ -55,7 +55,7 @@ def merge_doubles(result_one, result_two):
 dirty_contact_list = get_new_list(file_data)
 pure_contact_list = get_sort_contact_list(dirty_contact_list)
 
-# список для вывода в консоль(если надо)
+# список словаерей для записи в .csv и вывода в консоль(если надо)
 def get_pretty_contact_list(data):
     source = []
     result = []
